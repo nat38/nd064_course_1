@@ -12,5 +12,5 @@ COPY ./techtrends /app
 EXPOSE 3111
 
 ENTRYPOINT [ "python" ]
-
+CMD [ "init_db.py" ]
 CMD [ "app.py" ]
