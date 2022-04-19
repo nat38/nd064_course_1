@@ -9,7 +9,7 @@ RUN pip install -r requirements.txt
 
 COPY ./techtrends /app
 
-EXPOSE 3111
+# EXPOSE 3111
 
 ENTRYPOINT [ "python" ]
 
