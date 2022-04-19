@@ -20,7 +20,6 @@ spec:
         name: techtrends
         ports:
         - containerPort: 3111
-        resources: {}
         resources:
             requests:
                 memory: "64Mi"

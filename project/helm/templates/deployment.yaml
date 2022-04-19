@@ -20,24 +20,23 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         name: {{ .Values.app.name }}
         ports:
-        - containerPort: 3111
-        resources: {}
+        - containerPort: {{ .Values.app.port }}
         resources:
             requests:
-                memory: "64Mi"
-                cpu: "250m"
+                memory: {{ .Values.app.reqMemory }}
+                cpu: {{ .Values.app.reqCpu }}
             limits:
-                memory: "128Mi"
-                cpu: "500m"
+                memory: {{ .Values.app.limMemory }}
+                cpu: {{ .Values.app.limCpu }}
         livenessProbe:
             httpGet:
-                path: /healthz
-                port: 3111
-            initialDelaySeconds: 10
-            periodSeconds: 5
+                path: {{ .Values.app.livenessProbe.path }}
+                port: {{ .Values.app.livenessProbe.port }}
+            initialDelaySeconds: {{ .Values.app.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.app.livenessProbe.periodSeconds }}
         readinessProbe:
             httpGet:
-                path: /healthz
-                port: 3111
-            initialDelaySeconds: 10
-            periodSeconds: 5
+                path: {{ .Values.app.readinessProbe.path }}
+                port: {{ .Values.app.readinessProbe.port }}
+            initialDelaySeconds: {{ .Values.app.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.app.readinessProbe.periodSeconds }}

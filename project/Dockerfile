@@ -9,6 +9,8 @@ RUN pip install -r requirements.txt
 
 COPY ./techtrends /app
 
+EXPOSE 3111
+
 ENTRYPOINT [ "python" ]
 
-CMD [ "app.py" ]
+CMD ["init_db.py", "app.py" ]

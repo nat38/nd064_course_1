@@ -55,6 +55,7 @@ def index():
 def post(post_id):
     post = get_post(post_id)
     if post is None:
+      app.logger.warning('Article ' + post_id + ' does not exist!')
       return render_template('404.html'), 404
     else:
       app.logger.info('Article ' + post['title'] + ' retreived!')
@@ -82,7 +83,7 @@ def create():
                          (title, content))
             connection.commit()
             connection.close()
-
+            app.logger.info('New article ' + title + ' was created successfully!')
             return redirect(url_for('index'))
 
     return render_template('create.html')
@@ -114,5 +115,5 @@ def metrics():
 if __name__ == "__main__":
    logging.basicConfig(stream = sys.stdout,
                     format = log_format,
-                    level=logging.INFO)
+                    level=logging.DEBUG)
    app.run(host='0.0.0.0', port='3111')

@@ -1,12 +1,30 @@
 namespace:
   name: staging
 
+service:
+  port: 5111
+  targetPort: 3111
+
 app:
   name: techtrends
-
-replicaCount: 1
+  port: 3111
+  reqMemory: "90Mi"
+  reqCpu: "300m"
+  limMemory: "128Mi"
+  limCpu: "500m"
+  livenessProbe:
+    path: /healthz
+    port: 3111
+    initialDelaySeconds: 10
+    periodSeconds: 5
+  readinessProbe:
+    path: /healthz
+    port: 3111
+    initialDelaySeconds: 10
+    periodSeconds: 5
+replicaCount: 3
 
 image:
   repository: nat389/techtrends
   tag: latest
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
