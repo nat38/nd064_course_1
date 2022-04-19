@@ -1,0 +1,12 @@
+namespace:
+  name: production
+
+app:
+  name: techtrends
+
+replicaCount: 3
+
+image:
+  repository: nat389/techtrends
+  tag: latest
+  pullPolicy: Always
